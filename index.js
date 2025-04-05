@@ -69,8 +69,10 @@ const http = require("http");
 const server = http.createServer((req, res) =>
 {   
     //console.log(req);
+    const clientIp = req.connection.remoteAddress || req.socket.remoteAddress;
 
-    console.log(`Request Recieved! ${p}`);
+    console.log(`Request Recieved! from ${clientIp}`);
+    //res is RESPONDING, res is ressssinggggg after req done reqqqqingggg
     res.end('Hellooooo FUCKERSSSS IM HEREEE NOWWWW!!! 💀');
 });
 
