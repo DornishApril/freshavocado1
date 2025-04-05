@@ -3,7 +3,9 @@
 const fs = require('fs');
 
 //use ; when declaring variables or objects
-
+//blocking code
+//code happens one after another
+//SYNCHRONUS
 const textIn = fs.readFileSync('./txt/input.txt', 'utf-8');
 
 console.log(textIn);
