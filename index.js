@@ -25,8 +25,9 @@ const fs = require('fs');
 //error first system
 //first parameter is error, second is data
 
-fs.readFile('./txt/start.txt', 'utf-8', (err, data1) =>
+fs.readFile('./txt/starttt.txt', 'utf-8', (err, data1) =>
 {
+    if(err) return console.log("ERRORR ❌➕❌💥")
     console.log(data1);
 
     fs.readFile(`./txt/${data1}.txt`, 'utf-8', (err, data2) =>
