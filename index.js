@@ -64,12 +64,12 @@ const http = require("http");
 //res has lots of functions
 //IM SO FUCKING EXCITEDDDDDDDDDDDDDDDDDDD
 
-let p = 1;
+
 
 const server = http.createServer((req, res) =>
 {   
     //console.log(req);
-    p = p + 1;
+
     console.log(`Request Recieved! ${p}`);
     res.end('Hellooooo FUCKERSSSS IM HEREEE NOWWWW!!! 💀');
 });
