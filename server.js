@@ -1,4 +1,5 @@
 const http = require("http");
+const url = require("url");
 
 
 //SERVER
@@ -10,12 +11,12 @@ const http = require("http");
 //IM SO FUCKING EXCITEDDDDDDDDDDDDDDDDDDD
 
 
-let p = 0;
+
 const server = http.createServer((req, res) =>
 {   
     //console.log(req);
-    p = p + 1;
-    console.log(`Request Recieved! ${p}`);
+    
+    console.log(`Request Recieved!`);
     //res is RESPONDING, res is ressssinggggg after req done
     res.end('Hellooooo FUCKERSSSS IM HEREEE NOWWWW!!! 💀');
 
