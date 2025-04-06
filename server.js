@@ -3,10 +3,16 @@ const path = require("path");
 const url = require("url");
 const fs = require("fs");
 
-const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 
-const productData = JSON.parse(data);
-console.log(productData);
+const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`, 'utf-8');
+const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.html`, 'utf-8');
+const tempProduct = fs.readFileSync(`${__dirname}/templates/product.html`, 'utf-8');
+
+
+const data = fs.readFileSync(`${__dirname}/dev-data/data2.json`, 'utf-8');
+
+const dataObj = JSON.parse(data);
+
 
 
 //SERVER
@@ -17,17 +23,56 @@ console.log(productData);
 //res has lots of functions
 //IM SO FUCKING EXCITEDDDDDDDDDDDDDDDDDDD
 
+
+const replaceTemplate = (temp, product) =>
+{
+    let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
+    output=output.replace(/{%IMAGE%}/g, product.image);
+    output=output.replace(/{%PRICE%}/g, product.price);
+    output=output.replace(/{%FROM%}/g, product.from);
+    output=output.replace(/{%NUTRIENTS%}/g, product.nutrients);
+    output = output.replace(/{%QUANTITY%}/g, product.quantity);
+    output = output.replace(/{%ID%}/g, product.id);
+    output=output.replace(/{%DESCRIPTION%}/g, product.description);
+
+    if(!product.organic)
+    output=output.replace(/{%NOT_ORGANIC%}/g, 'not-organic');
+
+    return output;
+
+
+
+}
+
 const server = http.createServer((req, res) => {
   //console.log(req);
   console.log(req.url);
 
   const pathName = req.url;
 
-  if (pathName==="/"||pathName === "/overview") {
-    res.end("This is an Overview!!");
+    if (pathName === "/" || pathName === "/overview")
+    {
+        //Overview
+        
+
+        res.writeHead(200, {
+            'Conent-type': 'text/html',
+            'my-own-header':"Hello World"
+            //an http header is a piece of info to inform the browser about the resource
+    
+        });
+
+        const cardsHtml = dataObj.map(el => replaceTemplate(tempCard, el)).join('');
+        const output = tempOverview.replace('{%PRODUCT_CARDS%}', cardsHtml);
+        console.log(output);
+
+        res.end(output);
+        
+
     }
   else if (pathName === "/product")
-  {
+    {
+        //Product
       res.end("This is a product!");
   }
   else if (pathName === "/api")
