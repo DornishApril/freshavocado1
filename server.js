@@ -47,10 +47,10 @@ const replaceTemplate = (temp, product) =>
 const server = http.createServer((req, res) => {
   //console.log(req);
   console.log(req.url);
+  const { query, pathname } = url.parse(req.url, true);
 
-  const pathName = req.url;
-
-    if (pathName === "/" || pathName === "/overview")
+  console.log(query);
+    if (pathname === "/" || pathname === "/overview")
     {
         //Overview
         
@@ -64,33 +64,20 @@ const server = http.createServer((req, res) => {
 
         const cardsHtml = dataObj.map(el => replaceTemplate(tempCard, el)).join('');
         const output = tempOverview.replace('{%PRODUCT_CARDS%}', cardsHtml);
-        console.log(output);
+        //console.log(output);
 
         res.end(output);
         
 
     }
-  else if (pathName === "/product")
-    {
-      //Product
-      res.end("This is a product!");
 
-
-
-
-
-
-    }
-    else if (pathName.includes('/product?id='))
+    else if (pathname==='/product')
     {
 
-      const url = pathName;
-
-      // Create a new URLSearchParams object from the query string part of the URL
-      const params = new URLSearchParams(url.split('?')[1]);
 
       // Get the 'id' value
-      const i_d = Number(params.get('id'));
+      const i_d = Number(query.id);
+      console.log(i_d);
         
 
       console.log(dataObj);  // Output: 12
@@ -108,7 +95,7 @@ const server = http.createServer((req, res) => {
       res.end(output);
       
       }
-  else if (pathName === "/api")
+  else if (pathname === "/api")
   { 
       //instead of doing ./----, using __dirname wud do good
       //require doesnt follow it
