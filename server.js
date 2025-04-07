@@ -72,9 +72,42 @@ const server = http.createServer((req, res) => {
     }
   else if (pathName === "/product")
     {
-        //Product
+      //Product
       res.end("This is a product!");
-  }
+
+
+
+
+
+
+    }
+    else if (pathName.includes('/product?id='))
+    {
+
+      const url = pathName;
+
+      // Create a new URLSearchParams object from the query string part of the URL
+      const params = new URLSearchParams(url.split('?')[1]);
+
+      // Get the 'id' value
+      const i_d = Number(params.get('id'));
+        
+
+      console.log(dataObj);  // Output: 12
+      
+      const prod = dataObj.find(obj => obj.id === i_d);
+      
+      //
+      const output = replaceTemplate(tempProduct, prod);
+      
+
+
+      console.log(prod);
+
+      //res.end(`Product ID route made! ID :${i_d}`);
+      res.end(output);
+      
+      }
   else if (pathName === "/api")
   { 
       //instead of doing ./----, using __dirname wud do good

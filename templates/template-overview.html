@@ -14,7 +14,22 @@
     />
 
     <title>NODE FARM</title>
-
+    <head>
+      <script defer>
+        document.addEventListener('DOMContentLoaded', function() {
+          document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('click', function() {
+              const id = this.getAttribute('data-id');
+              window.location.href = `/product?id=${id}`;
+            });
+          });
+        });
+      </script>
+    </head>
+    <body>
+      <!-- Your HTML content here -->
+    </body>
+    
     <style>
       *,
       *::before,
@@ -196,5 +211,6 @@
              </div>
     </div>
   </body>
+  
 </html>
  
