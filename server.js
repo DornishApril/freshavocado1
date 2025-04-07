@@ -11,7 +11,7 @@ const tempProduct = fs.readFileSync(`${__dirname}/templates/product.html`, 'utf-
 
 
 const data = fs.readFileSync(`${__dirname}/dev-data/data2.json`, 'utf-8');
-
+ 
 const dataObj = JSON.parse(data);
 
 
