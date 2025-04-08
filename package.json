@@ -12,7 +12,7 @@
     "nodemon": "^3.1.9"
   },
   "scripts": {
-    "start": "node server.js", // Starts your Node.js server
-    "dev": "nodemon server.js" // Starts the server in development mode with hot-reloading
+    "start": "node server.js",
+    "dev": "nodemon server.js" 
   }
 }
