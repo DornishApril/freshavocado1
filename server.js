@@ -33,10 +33,10 @@ const dataObj = JSON.parse(data);
 //res has lots of functions
 //IM SO FUCKING EXCITEDDDDDDDDDDDDDDDDDDD
 
-console.log(slugify('Fresh Avocados', { lower: true }));
+//console.log(slugify('Fresh Avocados', { lower: true }));
 
 const slugs = dataObj.map((el) => slugify(el.productName, { lower: true }));
-console.log(slugs);
+//console.log(slugs);
 
 const server = http.createServer((req, res) => {
   //console.log(req);
@@ -73,6 +73,7 @@ const server = http.createServer((req, res) => {
     const output = replaceTemplate(tempProduct, prod);
 
     //console.log(prod);
+    console.log(`HAIII SARAAA !! YOU WANNA SEE THE ${dataObj[i_d].productName} ??? Sending you the thingiesssss! `);
 
     //res.end(`Product ID route made! ID :${i_d}`);
     res.end(output);
@@ -96,7 +97,6 @@ const server = http.createServer((req, res) => {
     res.end('<h1>Page Not Found</h1>');
   }
 
-  console.log(`Request Recieved!`);
   //res is RESPONDING, res is ressssinggggg after req done
 });
 
